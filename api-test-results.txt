@@ -1,0 +1,493 @@
+[33m
+╔═══════════════════════════════════════════════════════════╗
+║   Monad x402 Marketplace API Test Suite                  ║
+║   Testing all endpoints...                                ║
+╚═══════════════════════════════════════════════════════════╝
+[0m
+
+[34mTesting: Health Check[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "status": "ok",
+  "timestamp": "2025-11-29T05:43:29.017Z"
+}
+
+[34mTesting: Create Snippet[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+    "title": "useSWR Hook - React Data Fetching",
+    "description": "Production-ready SWR hook for React with TypeScript",
+    "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+    "language": "typescript",
+    "framework": "react",
+    "tags": [
+      "react",
+      "hooks",
+      "swr",
+      "data-fetching"
+    ],
+    "author_id": null,
+    "price_cents": 1,
+    "read_count": 0,
+    "verification_status": "pending",
+    "verification_tx_hash": null,
+    "verification_timestamp": null,
+    "last_auto_fix": null,
+    "auto_fix_count": 0,
+    "is_active": true,
+    "created_at": "2025-11-29T05:43:30.357403+00:00",
+    "updated_at": "2025-11-29T05:43:30.357403+00:00"
+  }
+}
+
+[34mTesting: Get All Snippets[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": [
+    {
+      "id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "pending",
+      "verification_tx_hash": null,
+      "verification_timestamp": null,
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:43:30.357403+00:00",
+      "updated_at": "2025-11-29T05:43:30.357403+00:00",
+      "profiles": null
+    },
+    {
+      "id": "58159828-7199-4638-b743-2a7330fc1c8d",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "verified",
+      "verification_tx_hash": "0x91b942b1af11b6e6c97879638b",
+      "verification_timestamp": "2025-11-29T05:43:15.89+00:00",
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:43:10.699782+00:00",
+      "updated_at": "2025-11-29T05:43:10.699782+00:00",
+      "profiles": null
+    },
+    {
+      "id": "47156f43-df44-4778-910c-ad3be83d17bd",
+      "title": "useDebounce Hook",
+      "description": "Debounce hook for React",
+      "code": "import { useEffect, useState } from 'react';\n\nexport function useDebounce<T>(value: T, delay: number): T {\n  const [debouncedValue, setDebouncedValue] = useState<T>(value);\n\n  useEffect(() => {\n    const handler = setTimeout(() => {\n      setDebouncedValue(value);\n    }, delay);\n\n    return () => clearTimeout(handler);\n  }, [value, delay]);\n\n  return debouncedValue;\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "debounce"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "pending",
+      "verification_tx_hash": null,
+      "verification_timestamp": null,
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:37:22.313188+00:00",
+      "updated_at": "2025-11-29T05:37:22.313188+00:00",
+      "profiles": null
+    },
+    {
+      "id": "6c548591-af9f-4839-9a02-32cda07655ed",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "```typescript\nimport useSWR from 'swr';\n\nconst fetcher = async (url: string) => {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new Error('Failed to fetch data');\n  }\n  return response.json();\n};\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher,\n    {\n      revalidateOnMount: true,\n      revalidateOnFocus: true,\n      revalidateOnReconnect: true,\n    }\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error !== null,\n  };\n}\n```",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 1,
+      "verification_status": "verified",
+      "verification_tx_hash": "0x9a66b0987086e31611e05e9731",
+      "verification_timestamp": "2025-11-29T05:37:10.662+00:00",
+      "last_auto_fix": "2025-11-29T05:37:17.997+00:00",
+      "auto_fix_count": 1,
+      "is_active": true,
+      "created_at": "2025-11-29T05:37:06.47897+00:00",
+      "updated_at": "2025-11-29T05:37:06.47897+00:00",
+      "profiles": null
+    },
+    {
+      "id": "fed9c107-383d-4d87-83ae-dfb7312bda7a",
+      "title": "useDebounce Hook",
+      "description": "Debounce hook for React",
+      "code": "import { useEffect, useState } from 'react';\n\nexport function useDebounce<T>(value: T, delay: number): T {\n  const [debouncedValue, setDebouncedValue] = useState<T>(value);\n\n  useEffect(() => {\n    const handler = setTimeout(() => {\n      setDebouncedValue(value);\n    }, delay);\n\n    return () => clearTimeout(handler);\n  }, [value, delay]);\n\n  return debouncedValue;\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "debounce"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "pending",
+      "verification_tx_hash": null,
+      "verification_timestamp": null,
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:35:09.614736+00:00",
+      "updated_at": "2025-11-29T05:35:09.614736+00:00",
+      "profiles": null
+    },
+    {
+      "id": "525c46f8-b4ca-48dc-97bc-9ea7ba6f2e0f",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "```typescript\nimport useSWR from 'swr';\n\nconst fetcher = async (url: string) => {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new Error('Failed to fetch data');\n  }\n  return response.json();\n};\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher,\n    {\n      // Add error retry and deduping options as needed\n      revalidateOnMount: true,\n      revalidateOnFocus: true,\n      revalidateOnReconnect: true,\n      dedupingInterval: 1000,\n    }\n  );\n\n  return {\n    user: data,\n    isLoading,\n    isError: error !== null,\n  };\n}\n```",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 1,
+      "verification_status": "verified",
+      "verification_tx_hash": "0xbe2638c3a0e75ecce9c23d78da",
+      "verification_timestamp": "2025-11-29T05:34:57.1+00:00",
+      "last_auto_fix": "2025-11-29T05:35:05.27+00:00",
+      "auto_fix_count": 1,
+      "is_active": true,
+      "created_at": "2025-11-29T05:34:51.673488+00:00",
+      "updated_at": "2025-11-29T05:34:51.673488+00:00",
+      "profiles": null
+    },
+    {
+      "id": "4071b7f3-c4f2-4844-a110-d6d3438c611a",
+      "title": "useDebounce Hook",
+      "description": "Debounce hook for React",
+      "code": "import { useEffect, useState } from 'react';\n\nexport function useDebounce<T>(value: T, delay: number): T {\n  const [debouncedValue, setDebouncedValue] = useState<T>(value);\n\n  useEffect(() => {\n    const handler = setTimeout(() => {\n      setDebouncedValue(value);\n    }, delay);\n\n    return () => clearTimeout(handler);\n  }, [value, delay]);\n\n  return debouncedValue;\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "debounce"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "pending",
+      "verification_tx_hash": null,
+      "verification_timestamp": null,
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:31:02.603503+00:00",
+      "updated_at": "2025-11-29T05:31:02.603503+00:00",
+      "profiles": null
+    },
+    {
+      "id": "e73e21b2-d794-4fc5-9072-4b150c27c9a5",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "verified",
+      "verification_tx_hash": "0x85c3e36f0acef87ca295badc",
+      "verification_timestamp": "2025-11-29T05:30:53.531+00:00",
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:30:49.691783+00:00",
+      "updated_at": "2025-11-29T05:30:49.691783+00:00",
+      "profiles": null
+    }
+  ]
+}
+
+[34mTesting: Get Snippet by ID[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+    "title": "useSWR Hook - React Data Fetching",
+    "description": "Production-ready SWR hook for React with TypeScript",
+    "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+    "language": "typescript",
+    "framework": "react",
+    "tags": [
+      "react",
+      "hooks",
+      "swr",
+      "data-fetching"
+    ],
+    "author_id": null,
+    "price_cents": 1,
+    "read_count": 0,
+    "verification_status": "pending",
+    "verification_tx_hash": null,
+    "verification_timestamp": null,
+    "last_auto_fix": null,
+    "auto_fix_count": 0,
+    "is_active": true,
+    "created_at": "2025-11-29T05:43:30.357403+00:00",
+    "updated_at": "2025-11-29T05:43:30.357403+00:00",
+    "profiles": null
+  }
+}
+
+[34mTesting: Verify Snippet[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "snippet": {
+      "id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "verified",
+      "verification_tx_hash": "0x542610f0f90bda88b5e522b962",
+      "verification_timestamp": "2025-11-29T05:43:35.921+00:00",
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:43:30.357403+00:00",
+      "updated_at": "2025-11-29T05:43:30.357403+00:00"
+    },
+    "tx_hash": "0x542610f0f90bda88b5e522b962",
+    "block_number": 52510124
+  }
+}
+
+[34mTesting: Get Verification Status[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "verification_status": "verified",
+    "verification_tx_hash": "0x542610f0f90bda88b5e522b962",
+    "verification_timestamp": "2025-11-29T05:43:35.921+00:00"
+  }
+}
+
+[34mTesting: Process Payment[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "payment": {
+      "id": "678b62d3-a214-47e2-af67-68c546c175d1",
+      "snippet_id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+      "buyer_id": null,
+      "buyer_wallet": "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
+      "amount_cents": 1,
+      "tx_hash": "0x542610f0f90bda88b5e522b962",
+      "payment_type": "one-time",
+      "created_at": "2025-11-29T05:43:39.185563+00:00"
+    },
+    "snippet": {
+      "id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "import useSWR from 'swr';\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error\n  };\n}",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 0,
+      "verification_status": "verified",
+      "verification_tx_hash": "0x542610f0f90bda88b5e522b962",
+      "verification_timestamp": "2025-11-29T05:43:35.921+00:00",
+      "last_auto_fix": null,
+      "auto_fix_count": 0,
+      "is_active": true,
+      "created_at": "2025-11-29T05:43:30.357403+00:00",
+      "updated_at": "2025-11-29T05:43:30.357403+00:00"
+    },
+    "subscription_eligible": false
+  }
+}
+
+[34mTesting: Check Payment Status[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "has_access": false
+}
+
+[34mTesting: Auto-Fix Snippet[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "snippet": {
+      "id": "1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675",
+      "title": "useSWR Hook - React Data Fetching",
+      "description": "Production-ready SWR hook for React with TypeScript",
+      "code": "```typescript\nimport useSWR from 'swr';\n\n// Define a fetcher function to handle API requests\nconst fetcher = async (url: string) => {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new Error(`HTTP error! status: ${response.status}`);\n  }\n  return await response.json();\n};\n\nexport function useUser(id: string) {\n  const { data, error, isLoading } = useSWR(\n    `/api/users/${id}`,\n    fetcher\n  );\n  \n  return {\n    user: data,\n    isLoading,\n    isError: error !== null // Check for null instead of truthy value\n  };\n}\n```",
+      "language": "typescript",
+      "framework": "react",
+      "tags": [
+        "react",
+        "hooks",
+        "swr",
+        "data-fetching"
+      ],
+      "author_id": null,
+      "price_cents": 1,
+      "read_count": 1,
+      "verification_status": "verified",
+      "verification_tx_hash": "0x542610f0f90bda88b5e522b962",
+      "verification_timestamp": "2025-11-29T05:43:35.921+00:00",
+      "last_auto_fix": "2025-11-29T05:43:43.52+00:00",
+      "auto_fix_count": 1,
+      "is_active": true,
+      "created_at": "2025-11-29T05:43:30.357403+00:00",
+      "updated_at": "2025-11-29T05:43:30.357403+00:00"
+    },
+    "changes_made": true
+  }
+}
+
+[34mTesting: Get Marketplace Stats[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "total_snippets": 8,
+    "total_payments": 3,
+    "total_verifications": 5,
+    "total_auto_fixes": 3
+  }
+}
+
+[34mTesting: Get User Stats[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "snippets": 0,
+    "purchases": 0,
+    "subscriptions": 0
+  }
+}
+
+[34mTesting: Create Second Snippet[0m
+[32m✓ PASS[0m
+Response: {
+  "success": true,
+  "data": {
+    "id": "c2af556e-e7e0-447b-afa2-2edb821fc8de",
+    "title": "useDebounce Hook",
+    "description": "Debounce hook for React",
+    "code": "import { useEffect, useState } from 'react';\n\nexport function useDebounce<T>(value: T, delay: number): T {\n  const [debouncedValue, setDebouncedValue] = useState<T>(value);\n\n  useEffect(() => {\n    const handler = setTimeout(() => {\n      setDebouncedValue(value);\n    }, delay);\n\n    return () => clearTimeout(handler);\n  }, [value, delay]);\n\n  return debouncedValue;\n}",
+    "language": "typescript",
+    "framework": "react",
+    "tags": [
+      "react",
+      "hooks",
+      "debounce"
+    ],
+    "author_id": null,
+    "price_cents": 1,
+    "read_count": 0,
+    "verification_status": "pending",
+    "verification_tx_hash": null,
+    "verification_timestamp": null,
+    "last_auto_fix": null,
+    "auto_fix_count": 0,
+    "is_active": true,
+    "created_at": "2025-11-29T05:43:48.108719+00:00",
+    "updated_at": "2025-11-29T05:43:48.108719+00:00"
+  }
+}
+
+[33m
+╔═══════════════════════════════════════════════════════════╗
+║   Test Suite Complete!                                    ║
+╚═══════════════════════════════════════════════════════════╝
+[0m
+
+[32mSummary:[0m
+- Created Snippet ID: 1d88c6a5-4cf3-4d6c-a044-c0a1d52b9675
+- Mock TX Hash: 0x542610f0f90bda88b5e522b962
+- Test Wallet: 0x6b015df62da64a12df2e13d2ffab9bfd99a838a2
+- Buyer Wallet: 0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199
+
+[34mNext Steps:[0m
+1. Set up Supabase project and add credentials to .env
+2. Run migrations: supabase db push
+3. Deploy edge function: supabase functions deploy api
+4. Update API_BASE_URL in .env to your deployed function URL
+5. Run this test again: node test-api.js

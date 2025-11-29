@@ -1,0 +1,10 @@
+{
+  "network": "monadTestnet",
+  "contractAddress": "0xd3215799fB97296853BC07203c369e2611be55f3",
+  "owner": "0x6B015Df62da64A12dF2e13d2fFAb9BFd99a838a2",
+  "paymentAmount": "10000000000000000",
+  "commissionRate": "10",
+  "deployedAt": "2025-11-29T06:49:51.182Z",
+  "transactionHash": "0xf4b32e7ac4e7508d3d083c44f092926a8976d46b228f479d7a1fb3a92f4ddb23",
+  "blockNumber": 52520052
+}

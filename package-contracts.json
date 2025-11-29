@@ -1,0 +1,22 @@
+{
+  "name": "monad-x402-contracts",
+  "version": "1.0.0",
+  "description": "X402 Facilitator Smart Contracts for Monad",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network monadTestnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network monadMainnet",
+    "interact": "hardhat run scripts/interact.js --network monadTestnet",
+    "verify": "hardhat verify --network monadTestnet",
+    "clean": "hardhat clean",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

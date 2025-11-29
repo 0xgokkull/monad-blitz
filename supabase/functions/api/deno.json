@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "hono": "https://deno.land/x/hono@v3.11.7/mod.ts",
+    "hono/cors": "https://deno.land/x/hono@v3.11.7/middleware/cors/index.ts",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.0",
+    "groq-sdk": "npm:groq-sdk@^0.3.2",
+    "ethers": "npm:ethers@^6.9.0"
+  }
+}
