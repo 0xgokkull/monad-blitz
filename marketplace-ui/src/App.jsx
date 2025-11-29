@@ -40,6 +40,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const [txDetails, setTxDetails] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [hoveredData, setHoveredData] = useState(null);
   const [stats, setStats] = useState(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -370,8 +373,9 @@ function App() {
             </div>
 
             <form onSubmit={uploadSnippet} className="upload-form">
-              <div className="form-group">
-                <label>Title *</label>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label>Title *</label>
                 <input
                   type="text"
                   value={uploadForm.title}
@@ -472,6 +476,7 @@ function App() {
                   You'll receive 90% of sales (0.009 ETH per purchase)
                 </small>
               </div>
+            </div>
 
               <div className="modal-footer">
                 <button
@@ -677,8 +682,8 @@ function App() {
         <div className="container">
           <div className="header-content">
             <div className="logo">
-              <span className="logo-icon">⚡</span>
-              <span className="logo-text">Monad Marketplace</span>
+              <img src="/snipx402_logo.png" alt="snipX402" className="logo-img" />
+              <span className="logo-text">snipX402</span>
             </div>
 
             {stats && (
@@ -732,6 +737,200 @@ function App() {
           }`}
         >
           <div className="container">{status}</div>
+        </div>
+      )}
+
+      {/* Analytics Modal */}
+      {showAnalyticsModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowAnalyticsModal(false)}
+        >
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>📊 Platform Analytics</h2>
+              <p>Real-time marketplace statistics</p>
+            </div>
+            <div className="modal-body">
+              <div className="chart-container">
+                <svg
+                  viewBox="0 0 600 200"
+                  className="analytics-graph"
+                  onMouseLeave={() => setHoveredData(null)}
+                >
+                  {/* Grid Lines */}
+                  <line
+                    x1="50"
+                    y1="150"
+                    x2="550"
+                    y2="150"
+                    stroke="var(--color-glass-border)"
+                    strokeWidth="1"
+                  />
+                  <line
+                    x1="50"
+                    y1="100"
+                    x2="550"
+                    y2="100"
+                    stroke="var(--color-glass-border)"
+                    strokeWidth="1"
+                  />
+                  <line
+                    x1="50"
+                    y1="50"
+                    x2="550"
+                    y2="50"
+                    stroke="var(--color-glass-border)"
+                    strokeWidth="1"
+                  />
+
+                  {/* The Line */}
+                  <polyline
+                    points="100,80 300,120 500,60"
+                    fill="none"
+                    stroke="var(--color-contrast)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="graph-line"
+                  />
+
+                  {/* Data Points */}
+                  <g
+                    className="data-point"
+                    onMouseEnter={() =>
+                      setHoveredData({
+                        label: "Downloads",
+                        value: stats ? stats.totalDownloads : 128,
+                        x: 100,
+                        y: 80,
+                      })
+                    }
+                  >
+                    <circle
+                      cx="100"
+                      cy="80"
+                      r="6"
+                      fill="var(--color-bg)"
+                      stroke="var(--color-contrast)"
+                      strokeWidth="3"
+                    />
+                    <circle
+                      cx="100"
+                      cy="80"
+                      r="12"
+                      fill="transparent"
+                      className="hover-target"
+                    />
+                  </g>
+
+                  <g
+                    className="data-point"
+                    onMouseEnter={() =>
+                      setHoveredData({
+                        label: "Snippets",
+                        value: snippets.length,
+                        x: 300,
+                        y: 120,
+                      })
+                    }
+                  >
+                    <circle
+                      cx="300"
+                      cy="120"
+                      r="6"
+                      fill="var(--color-bg)"
+                      stroke="var(--color-contrast)"
+                      strokeWidth="3"
+                    />
+                    <circle
+                      cx="300"
+                      cy="120"
+                      r="12"
+                      fill="transparent"
+                      className="hover-target"
+                    />
+                  </g>
+
+                  <g
+                    className="data-point"
+                    onMouseEnter={() =>
+                      setHoveredData({
+                        label: "Commission",
+                        value: (stats ? stats.totalCommission : "0.45") + " ETH",
+                        x: 500,
+                        y: 60,
+                      })
+                    }
+                  >
+                    <circle
+                      cx="500"
+                      cy="60"
+                      r="6"
+                      fill="var(--color-bg)"
+                      stroke="var(--color-contrast)"
+                      strokeWidth="3"
+                    />
+                    <circle
+                      cx="500"
+                      cy="60"
+                      r="12"
+                      fill="transparent"
+                      className="hover-target"
+                    />
+                  </g>
+
+                  {/* Labels */}
+                  <text
+                    x="100"
+                    y="180"
+                    textAnchor="middle"
+                    className="graph-label"
+                  >
+                    Downloads
+                  </text>
+                  <text
+                    x="300"
+                    y="180"
+                    textAnchor="middle"
+                    className="graph-label"
+                  >
+                    Snippets
+                  </text>
+                  <text
+                    x="500"
+                    y="180"
+                    textAnchor="middle"
+                    className="graph-label"
+                  >
+                    Commission
+                  </text>
+                </svg>
+
+                {/* Hover Tooltip */}
+                {hoveredData && (
+                  <div
+                    className="graph-tooltip"
+                    style={{
+                      left: `${(hoveredData.x / 600) * 100}%`,
+                      top: `${(hoveredData.y / 200) * 100}%`,
+                    }}
+                  >
+                    <span className="tooltip-value">{hoveredData.value}</span>
+                    <span className="tooltip-label">{hoveredData.label}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                className="btn btn-secondary"
+                onClick={() => setShowAnalyticsModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -839,12 +1038,33 @@ function App() {
           {!selectedSnippet?.code && (
             <>
               <div className="section-header">
-                <h2>🔥 Featured Snippets</h2>
+                <h2> Featured Snippets</h2>
                 <p>Premium code snippets • 0.01 ETH each • Zero gas fees</p>
               </div>
 
+              {/* Search Bar */}
+              <div className="search-container">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="🔍 Search snippets by title, language, or tags..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+
               <div className="snippets-grid">
-                {snippets.map((snippet) => (
+                {snippets
+                  .filter((snippet) => {
+                    const query = searchQuery.toLowerCase();
+                    return (
+                      snippet.title.toLowerCase().includes(query) ||
+                      snippet.description.toLowerCase().includes(query) ||
+                      snippet.language.toLowerCase().includes(query) ||
+                      (snippet.tags && snippet.tags.toLowerCase().includes(query))
+                    );
+                  })
+                  .map((snippet) => (
                   <div key={snippet.id} className="snippet-card">
                     <div className="snippet-card-header">
                       <h3>{snippet.title}</h3>
@@ -882,30 +1102,32 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>
-            Powered by Monad Testnet ⚡ • Smart Contract:{" "}
-            {EXPLORER_AVAILABLE ? (
-              <a
-                href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {CONTRACT_ADDRESS.slice(0, 10)}...
-              </a>
-            ) : (
-              <code
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  navigator.clipboard.writeText(CONTRACT_ADDRESS);
-                  setStatus("✅ Contract address copied!");
-                  setTimeout(() => setStatus(""), 2000);
-                }}
-                title="Click to copy"
-              >
-                {CONTRACT_ADDRESS.slice(0, 10)}...
-              </code>
-            )}
-          </p>
+          <div className="footer-content">
+            <p>
+              Powered by Monad Testnet ⚡ • Smart Contract:{" "}
+              {EXPLORER_AVAILABLE ? (
+                <a
+                  href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {CONTRACT_ADDRESS.slice(0, 10)}...
+                </a>
+              ) : (
+                <code
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigator.clipboard.writeText(CONTRACT_ADDRESS);
+                    setStatus("✅ Contract address copied!");
+                    setTimeout(() => setStatus(""), 2000);
+                  }}
+                  title="Click to copy"
+                >
+                  {CONTRACT_ADDRESS.slice(0, 10)}...
+                </code>
+              )}
+            </p>
+          </div>
         </div>
       </footer>
     </div>
