@@ -1,101 +1,117 @@
-# Monad x402 Marketplace Backend
+# Monad x402 Marketplace
 
-Complete backend for verified code snippet marketplace with x402 payments, Monad blockchain verification, and Groq AI auto-fix.
+Full-stack code snippet marketplace with x402 micropayments, Monad blockchain verification, and Groq AI auto-fix.
+
+## Project Structure
+
+```
+├── frontend/          # React + Vite frontend
+├── backend/           # Node.js + Express backend + Smart contracts
+├── .env              # Environment variables
+└── README.md         # This file
+```
 
 ## Quick Setup
 
-### 1. Fill `.env` file
-
-You need 3 things:
-
-#### ✅ Supabase (You already have this!)
-
-Already in your `.env` file
-
-#### 🤖 Groq API Key (FREE - takes 30 seconds)
-
-1. Go to: **https://console.groq.com/keys**
-2. Sign up with Google/GitHub
-3. Click "Create API Key"
-4. Copy the key (starts with `gsk_`)
-5. Paste in `.env` → `GROQ_API_KEY=`
-
-#### 💰 Your Wallet Address
-
-Use your Monad testnet wallet address
-Paste in `.env` → `X402_FACILITATOR_ADDRESS=`
-
-### 2. Deploy
+### 1. Install All Dependencies
 
 ```bash
-# Install dependencies
-npm install
-
-# Deploy database
-supabase db push
-
-# Deploy API
-supabase functions deploy api
+npm run install:all
 ```
 
-### 3. Test
+### 2. Configure Environment
+
+Create `.env` file in root:
+
+```env
+# Groq API (FREE - https://console.groq.com/keys)
+GROQ_API_KEY=gsk_...
+
+# Monad Network
+MONAD_RPC_URL=https://testnet-rpc.monad.xyz
+MONAD_CHAIN_ID=10143
+PRIVATE_KEY=your_wallet_private_key
+
+# Contract
+X402_FACILITATOR_ADDRESS=deployed_contract_address
+
+# Supabase
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+```
+
+### 3. Deploy Smart Contracts
 
 ```bash
-node test-api.js
+npm run compile:contracts
+npm run deploy:contracts
 ```
 
-## What You Get
+### 4. Start Development
 
-- **12 REST API endpoints** (snippets, payments, verification, AI auto-fix, analytics)
-- **6 database tables** (profiles, snippets, payments, subscriptions, logs)
-- **x402 micropayments** (1¢ per snippet)
-- **Monad blockchain verification** (2-second onchain proof)
-- **Groq AI auto-fix** (weekly self-healing code)
-- **Subscription system** (50% discount after 10 reads)
+```bash
+npm run dev  # Starts both frontend and backend
+```
 
-## API Endpoints
+Or run separately:
 
-| Endpoint                      | Method | Description                 |
-| ----------------------------- | ------ | --------------------------- |
-| `/health`                     | GET    | Health check                |
-| `/snippets`                   | POST   | Create snippet              |
-| `/snippets`                   | GET    | List all snippets           |
-| `/snippets/:id`               | GET    | Get snippet by ID           |
-| `/payments/process`           | POST   | Process x402 payment        |
-| `/payments/check/:id/:wallet` | GET    | Check payment status        |
-| `/verify/:id`                 | POST   | Verify on Monad blockchain  |
-| `/verify/:id/status`          | GET    | Get verification status     |
-| `/autofix/:id`                | POST   | AI auto-fix snippet         |
-| `/autofix/batch`              | POST   | Batch auto-fix all snippets |
-| `/stats`                      | GET    | Marketplace statistics      |
-| `/stats/user/:wallet`         | GET    | User statistics             |
+```bash
+npm run dev:backend   # Backend on http://localhost:3000
+npm run dev:frontend  # Frontend on http://localhost:5173
+```
+
+## Features
+
+- **12 REST API endpoints** - Snippets, payments, verification, AI auto-fix, analytics
+- **x402 micropayments** - 0.01 ETH per snippet (90% to creator, 10% commission)
+- **Monad blockchain verification** - 2-second onchain proof
+- **Groq AI auto-fix** - Weekly self-healing code using Llama 3.1 70B
+- **Subscription system** - 50% discount after 10 purchases
+- **React frontend** - Modern UI with Web3 wallet integration
+
+## Available Scripts
+
+```bash
+npm run install:all        # Install all dependencies
+npm run dev                # Run both frontend and backend
+npm run dev:backend        # Run backend only
+npm run dev:frontend       # Run frontend only
+npm run build:frontend     # Build frontend for production
+npm run test:backend       # Run backend tests
+npm run compile:contracts  # Compile smart contracts
+npm run deploy:contracts   # Deploy to Monad testnet
+```
 
 ## Tech Stack
 
-- **Backend**: Supabase (PostgreSQL + Edge Functions)
-- **API**: Hono framework
-- **AI**: Groq (Llama 3.1 70B)
-- **Blockchain**: Monad Testnet
-- **Runtime**: Deno
+### Frontend
 
-## Cost
+- React 19 + Vite
+- Ethers.js v6
+- ESLint
 
-- **Development**: $0 (all free tiers)
-- **Production**: ~$25/month (Supabase Pro)
+### Backend
 
-## Files
+- Node.js + Express
+- Hardhat + Solidity 0.8.20
+- Supabase (PostgreSQL + Edge Functions)
+- Groq AI (Llama 3.1 70B)
+- Ethers.js v6
+- Thirdweb SDK
 
-```
-├── .env                                    # Your credentials
-├── supabase/
-│   ├── migrations/001_initial_schema.sql   # Database schema
-│   └── functions/api/index.ts              # API implementation
-├── test-api.js                             # Test suite
-└── test-curl.sh                            # cURL tests
-```
+### Blockchain
+
+- Monad Testnet (EVM-compatible)
+- Smart contracts for x402 payments
+
+## Documentation
+
+- **Backend API**: See `backend/API-EXAMPLES.md`
+- **Frontend**: See `frontend/README.md`
+- **Backend**: See `backend/README.md`
 
 ## Support
 
-- **Supabase**: https://supabase.com/docs
-- **Groq**: https://console.groq.com/docs
 - **Monad**: https://docs.monad.xyz
+- **Groq**: https://console.groq.com/docs
+- **Supabase**: https://supabase.com/docs

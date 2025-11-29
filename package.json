@@ -1,36 +1,31 @@
 {
-  "name": "monad-x402-backend",
+  "name": "monad-x402-marketplace",
   "version": "1.0.0",
-  "description": "Monad x402 Marketplace Backend",
-  "main": "server-x402.js",
+  "description": "Monad x402 Marketplace - Full Stack Application",
+  "private": true,
   "scripts": {
-    "start": "node server-x402.js",
-    "dev": "nodemon server-x402.js",
-    "autofix": "node cron-autofix.js",
-    "test": "hardhat test",
-    "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.js --network monadTestnet"
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run preview",
+    "build:frontend": "cd frontend && npm run build",
+    "test:backend": "cd backend && npm test",
+    "compile:contracts": "cd backend && npm run compile",
+    "deploy:contracts": "cd backend && npm run deploy"
   },
   "keywords": [
     "monad",
     "x402",
     "blockchain",
-    "marketplace"
+    "marketplace",
+    "react",
+    "express"
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "@supabase/supabase-js": "^2.86.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "ethers": "^6.15.0",
-    "express": "^4.21.2",
-    "groq-sdk": "^0.8.0",
-    "hardhat": "^2.22.18",
-    "thirdweb": "^5.72.1"
-  },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "concurrently": "^8.2.2"
   }
 }

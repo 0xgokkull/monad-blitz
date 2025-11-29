@@ -9,7 +9,14 @@ const { ethers } = require("ethers");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// CORS configuration for production
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "*",
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Monad Testnet configuration
 const monadTestnet = defineChain(10143);
