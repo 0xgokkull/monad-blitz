@@ -40,8 +40,19 @@ app.use(cors(corsOptions));
 const monadTestnet = defineChain(10143);
 
 // Thirdweb client
+// Thirdweb client
+const secretKey = process.env.THIRDWEB_SECRET_KEY;
+const clientId = process.env.THIRDWEB_CLIENT_ID;
+
+if (!secretKey && !clientId) {
+  console.error("❌ ERROR: Missing THIRDWEB_SECRET_KEY or THIRDWEB_CLIENT_ID in environment variables.");
+  console.error("   Please add one of these to your .env file or deployment settings.");
+  process.exit(1);
+}
+
 const client = createThirdwebClient({
-  secretKey: process.env.THIRDWEB_SECRET_KEY,
+  secretKey: secretKey,
+  clientId: clientId,
 });
 
 // X402 Facilitator
@@ -478,9 +489,8 @@ app.post("/api/autofix/:id", async (req, res) => {
         },
         {
           role: "user",
-          content: `Language: ${snippet.language}\nFramework: ${
-            snippet.framework || "none"
-          }\n\nCode:\n${snippet.code}`,
+          content: `Language: ${snippet.language}\nFramework: ${snippet.framework || "none"
+            }\n\nCode:\n${snippet.code}`,
         },
       ],
       model: "llama-3.3-70b-versatile",
