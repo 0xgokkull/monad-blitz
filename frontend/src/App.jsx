@@ -5,6 +5,9 @@ import "./App.css";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "0x338bBC23F6049fb0FD54a7A8d2e4e26952A0B448"; // V2 Contract
 const EXPLORER_URL = import.meta.env.VITE_EXPLORER_URL || "https://monad-testnet.socialscan.io";
+const CHAIN_ID = import.meta.env.VITE_CHAIN_ID || "10143";
+const RPC_URL = import.meta.env.VITE_RPC_URL || "https://testnet-rpc.monad.xyz";
+const NETWORK_NAME = import.meta.env.VITE_NETWORK_NAME || "Monad Testnet";
 const EXPLORER_AVAILABLE = true;
 const CONTRACT_ABI = [
   "function hasAccess(address user, bytes32 snippetId) external view returns (bool)",
@@ -92,6 +95,44 @@ function App() {
 
       const provider = new ethers.BrowserProvider(window.ethereum);
       const accounts = await provider.send("eth_requestAccounts", []);
+      
+      // Check network
+      const network = await provider.getNetwork();
+      const chainIdHex = "0x" + parseInt(CHAIN_ID).toString(16);
+      
+      if (network.chainId.toString() !== CHAIN_ID) {
+        setStatus("🔄 Switching to Monad Testnet...");
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: chainIdHex }],
+          });
+        } catch (switchError) {
+          // This error code indicates that the chain has not been added to MetaMask.
+          if (switchError.code === 4902) {
+            setStatus("➕ Adding Monad Testnet...");
+            await window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: chainIdHex,
+                  chainName: NETWORK_NAME,
+                  rpcUrls: [RPC_URL],
+                  blockExplorerUrls: [EXPLORER_URL],
+                  nativeCurrency: {
+                    name: "Monad",
+                    symbol: "MON",
+                    decimals: 18,
+                  },
+                },
+              ],
+            });
+          } else {
+            throw switchError;
+          }
+        }
+      }
+
       const signer = await provider.getSigner();
 
       setWallet({
@@ -103,7 +144,8 @@ function App() {
       setStatus("✅ Wallet connected!");
       setTimeout(() => setStatus(""), 2000);
     } catch (error) {
-      setStatus("❌ " + error.message);
+      console.error("Connection error:", error);
+      setStatus("❌ " + (error.reason || error.message));
     } finally {
       setLoading(false);
     }
