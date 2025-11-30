@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import "./App.css";
 
-const API_URL = "http://localhost:3000";
-const CONTRACT_ADDRESS = "0x338bBC23F6049fb0FD54a7A8d2e4e26952A0B448"; // V2 Contract
-const EXPLORER_URL = "https://monad-testnet.socialscan.io";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "0x338bBC23F6049fb0FD54a7A8d2e4e26952A0B448"; // V2 Contract
+const EXPLORER_URL = import.meta.env.VITE_EXPLORER_URL || "https://monad-testnet.socialscan.io";
 const EXPLORER_AVAILABLE = true;
 const CONTRACT_ABI = [
   "function hasAccess(address user, bytes32 snippetId) external view returns (bool)",
