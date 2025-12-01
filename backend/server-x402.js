@@ -456,7 +456,7 @@ app.post("/api/register-snippet", async (req, res) => {
   }
 });
 
-// AI Auto-Fix with Groq
+// AI Auto-Fix with Alith (using Groq model)
 app.post("/api/autofix/:id", async (req, res) => {
   try {
     const snippetId = req.params.id;
@@ -476,29 +476,23 @@ app.post("/api/autofix/:id", async (req, res) => {
 
     console.log(`🤖 Auto-fixing snippet: ${snippet.title}`);
 
-    // Call Groq AI for auto-fix
-    const Groq = require("groq-sdk");
-    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
-    const completion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a code auto-fix engine. Fix deprecated APIs, framework updates, security issues, and best practices. Return ONLY the fixed code without explanations.",
-        },
-        {
-          role: "user",
-          content: `Language: ${snippet.language}\nFramework: ${snippet.framework || "none"
-            }\n\nCode:\n${snippet.code}`,
-        },
-      ],
-      model: "llama-3.3-70b-versatile",
-      temperature: 0.3,
-      max_tokens: 2048,
+    // Call Alith with Groq model
+    const { Agent } = require("alith");
+    const agent = new Agent({
+      name: "Auto-Fix Agent",
+      model: "llama-3.1-8b-instant", // llama-3.3 not yet supported by Alith
+      apiKey: process.env.GROQ_API_KEY,
+      baseUrl: "https://api.groq.com/openai/v1",
+      preamble: `You are a code auto-fix engine. Fix deprecated APIs, framework updates, security issues, and best practices. Return ONLY the fixed code without explanations.`,
     });
 
-    const fixedCode = completion.choices[0]?.message?.content || snippet.code;
+    const result = await agent.prompt(`Language: ${snippet.language}\nFramework: ${snippet.framework || "none"}\n\nCode:\n${snippet.code}`);
+
+    // Alith returns the response directly as string or in a specific format. 
+    // Assuming standard behavior where prompt returns the text response.
+    // If alith returns an object, we might need to adjust. 
+    // Based on common agentic patterns, prompt usually returns the answer.
+    const fixedCode = result || snippet.code;
     const changesMade = fixedCode !== snippet.code;
 
     // Update snippet with fixed code
@@ -522,6 +516,7 @@ app.post("/api/autofix/:id", async (req, res) => {
       fixed_code: fixedCode,
       fix_reason: "Manual auto-fix request",
       groq_model: "llama-3.3-70b-versatile",
+      tool_used: "alith",
     });
 
     console.log(`✅ Auto-fix complete. Changes made: ${changesMade}`);

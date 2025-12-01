@@ -22,6 +22,7 @@
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@supabase/supabase-js": "^2.86.0",
+    "alith": "^0.12.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "ethers": "^6.15.0",
