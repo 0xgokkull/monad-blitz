@@ -1,6 +1,20 @@
-# Monad x402 Marketplace
+# Alith x402 Marketplace
 
-Full-stack code snippet marketplace with x402 micropayments, Monad blockchain verification, and Groq AI auto-fix.
+Alith x402 Marketplace is a full-stack decentralized application where developers can buy and sell code snippets using instant micropayments. It leverages Alith's AI agents to ensure the code library remains high-quality and up-to-date.
+
+## Key Features
+
+- **AI Auto-Fix with Alith:** An integrated Alith agent (using Llama 3.1) automatically scans snippets to fix deprecated code, security issues, and bugs, keeping the entire library self-maintaining without manual intervention.
+- **x402 Micropayments:** Users pay a small fee to unlock snippets, with payments settling instantly on the blockchain.
+- **Creator-First Economy:** Smart contracts automatically split revenue, ensuring creators receive 90% of every sale directly.
+- **On-Chain Verification:** Every access and purchase is verified on the blockchain for complete transparency.
+
+## Tech Stack
+
+- **AI:** Alith (Agent Framework)
+- **Frontend:** React 19, Vite, Ethers.js
+- **Backend:** Node.js, Express, Supabase
+- **Blockchain:** Solidity Smart Contracts
 
 ## Project Structure
 
@@ -60,15 +74,6 @@ npm run dev:backend   # Backend on http://localhost:3000
 npm run dev:frontend  # Frontend on http://localhost:5173
 ```
 
-## Features
-
-- **12 REST API endpoints** - Snippets, payments, verification, AI auto-fix, analytics
-- **x402 micropayments** - 0.01 ETH per snippet (90% to creator, 10% commission)
-- **Monad blockchain verification** - 2-second onchain proof
-- **Groq AI auto-fix** - Weekly self-healing code using Llama 3.1 70B
-- **Subscription system** - 50% discount after 10 purchases
-- **React frontend** - Modern UI with Web3 wallet integration
-
 ## Available Scripts
 
 ```bash
@@ -81,37 +86,3 @@ npm run test:backend       # Run backend tests
 npm run compile:contracts  # Compile smart contracts
 npm run deploy:contracts   # Deploy to Monad testnet
 ```
-
-## Tech Stack
-
-### Frontend
-
-- React 19 + Vite
-- Ethers.js v6
-- ESLint
-
-### Backend
-
-- Node.js + Express
-- Hardhat + Solidity 0.8.20
-- Supabase (PostgreSQL + Edge Functions)
-- Groq AI (Llama 3.1 70B)
-- Ethers.js v6
-- Thirdweb SDK
-
-### Blockchain
-
-- Monad Testnet (EVM-compatible)
-- Smart contracts for x402 payments
-
-## Documentation
-
-- **Backend API**: See `backend/API-EXAMPLES.md`
-- **Frontend**: See `frontend/README.md`
-- **Backend**: See `backend/README.md`
-
-## Support
-
-- **Monad**: https://docs.monad.xyz
-- **Groq**: https://console.groq.com/docs
-- **Supabase**: https://supabase.com/docs
